@@ -137,6 +137,38 @@ function parseRokuData (){
 	;
     console.log(str);
 
+    //--- Start : build SQL
+
+    var sql_str =
+
+"INSERT INTO `pm1`.`bundle_feeds_roku` (`bundle_id`) VALUES ('YOUR_ROKU_BUNDLE_ID');" + "\n\n" +
+
+ "UPDATE `pm1`.`bundle_feeds_roku` SET " + "\n" +
+
+ "`roku_id`         =   '"+ obj.feedChannel.channelId       + "' ," + "\n" +
+ "`name`            =   '"+ obj.feedChannel.name            + "' ," + "\n" +
+ "`rating`          =   '"+ obj.feedChannel.starRating      + "' ," + "\n" +
+ "`ratingCount`     =   '"+ obj.feedChannel.starRatingCount + "' ," + "\n" +
+ "`desc`            =   '"+ obj.feedChannel.description     + "' ," + "\n" +
+
+ "`developer`       =   '"+ obj.feedChannel.developer  + "' ," + "\n" +
+ "`developerId`     =   '"+ obj.details.developerId    + "' ," + "\n" +
+ "`developerName`   =   '"+ obj.details.developerName  + "' ," + "\n" +
+
+ "`dateCreated`     =   '"+ obj.details.createdDate   + "' ," + "\n" +
+ "`dateModified`    =   '"+ obj.details.modifiedDate  + "' ," + "\n" +
+ "`datePublished`   =   '"+ obj.details.publishedDate + "'  " + "\n\n" +
+
+ "WHERE  `bundle_id`='YOUR_ROKU_BUNDLE_ID';" + "\n\n\n\n" ;
+
+
+
+
+
+    //--- End : BUild SQL
+
+
+
     var newDiv = document.createElement("div");
     newDiv.style= " border-color: gray;  border-top-style: dashed; border-bottom-style: dashed;     border-width: thin;";
     newDiv.innerHTML = str;
@@ -147,7 +179,7 @@ function parseRokuData (){
 
     var footerDiv = document.getElementsByClassName("footer-section-sitemap")[0];
     footerDiv.textAlign = "right";
-    footerDiv.innerHTML = footerDiv.innerHTML + "<pre>" + JSON.stringify(obj,null,2) +"</pre>";
+    footerDiv.innerHTML = footerDiv.innerHTML + "<pre>" + JSON.stringify(obj,null,2) +"\n\n\n\n" + sql_str + "</pre>"  ;
 }
 
 function getRokuData(){
