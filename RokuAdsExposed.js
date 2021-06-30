@@ -17,6 +17,17 @@ function addCss(cssString) {
     newCss.innerHTML = cssString;
     head.appendChild(newCss);
 }
+function getMeta(metaName) {
+  const metas = document.getElementsByTagName('meta');
+
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+
+  return '';
+}
 
 function parseRokuData (){
 	//console.log(this.responseText);
@@ -115,7 +126,10 @@ function parseRokuData (){
     }
     //----------------
 
-    var str = isAdSupported_str + revenueSources  + "<BR>" +
+    var str =
+        "store_id: " + getMeta('appstore:store_id') + " ,bundle_id: " + getMeta('appstore:bundle_id') + "<BR>" +
+
+        isAdSupported_str + revenueSources  + "<BR>" +
 
         //rankByWatched_str + " , Seconds Watched: "+ secondsWatched_str + " ["+ parseInt(obj.feedChannel.secondsWatched/60/60)+" hours]"+ " ["+ parseInt(obj.feedChannel.secondsWatched/60/60/24)+" days]" + "<BR>" +
 
